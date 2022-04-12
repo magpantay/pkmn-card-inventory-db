@@ -10,6 +10,7 @@ There will also be a program (likely in Python) written to easily query and modi
 
 ## To-dos:
 
+- Get @BleatyBoi up to speed on git  
 - Plan the database schema
 - Create the database
 - Create a script that interfaces with the DB
