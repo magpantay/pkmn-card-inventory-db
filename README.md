@@ -23,9 +23,9 @@ There will also be a program (likely in Python) written to easily query and modi
 
 ## To-dos:
 
-~~- Get @BleatyBoi up to speed on git~~ (more or less done enough)
-~~- Plan the database schema~~ (done, see above)
-~~- Create the database~~ (done, createDB.py)
+- ~~Get @BleatyBoi up to speed on git~~ (more or less done enough)
+- ~~Plan the database schema~~ (done, see above)
+- ~~Create the database~~ (done, createDB.py)
 - Create a script that interfaces with the DB
 - Verify and test functionality of script
 - Potentially: create a GUI for interfacing/modifying the DB
