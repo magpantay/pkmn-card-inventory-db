@@ -3,10 +3,14 @@ NOTES
 just a throwaway file for me to keep some noted for you on
 (You can format this to be pretty if you want idk how)
 
------4/14/22-----
+-----4/13/22-----
 - made a crude data insertion program (DBinsert.py)
     - only adds mon and dex num to the primairy table, but might be a good starting point?
 - I don't think dexNum is a good Primairy Key, as many cards are going to have the same dex number.
     - Maybe add new column for KEY? generate a new unique ID for every new card added?
     - Exact duplicates can still be added to DB with the cardInfo table? unsure I need to think about it more.
     - What are your thoughts?
+
+-----4/14/22-----
+- I have an idea! Might not need that new KEY idea after all. I just didn't know how to insert data very will
+    - Will be testing soon
