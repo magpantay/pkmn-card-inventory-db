@@ -28,8 +28,8 @@ There will also be a program (likely in Python) written to easily query and modi
 - ~~Create the database~~ (done, createDB.py)
 - Create a script that interfaces with the DB
   - Add querying functionality
-  - Add insertion functionality
+  - Add insertion functionality (Started AKA in progress AKA not done still)
   - Add removal functionality
-  - Add updating cardInfo.amount functionality
+  - Add updating cardInfo.amount functionality (progress in progress)-
 - Verify and test functionality of script
 - Potentially: create a GUI for interfacing/modifying the DB

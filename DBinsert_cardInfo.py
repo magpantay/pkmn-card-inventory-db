@@ -1,7 +1,9 @@
 '''
 Simple program that adds a card to the cardInfo TABLE
 
-Make sure DB exists by running createDB.py before using thisW
+Make sure DB exists by running createDB.py before using this
+
+This can be Deer homework (((((((blet)))))))
 '''
 
 #%% Imports and Vars
