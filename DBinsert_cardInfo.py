@@ -43,7 +43,7 @@ def insertItem(connection, userInput):
     # Check if dexNum (primary and foreign key) exists in the pokemonInfo table
     # If it doesn't, console output and exit (without any insertion)
     if (len(dexNumExistResult) == 0):
-        print("ERROR: Dex Number '" + userInput['dexNum'] + "' does not exist in the pokemonInfo table.")
+        print("ERROR: Dex Number '" + str(userInput['dexNum']) + "' does not exist in the pokemonInfo table.")
         exit()
 
     # If it does, insert this new entry into the DB -or- increment the counter if already exists in table
