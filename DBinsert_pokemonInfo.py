@@ -8,48 +8,54 @@ Make sure DB exists by running createDB.py before using this
 
 import sqlite3
 
-db_filename = 'pkmn_cards.db'
+dbFilename = 'pkmn_cards.db'
 
 #%% Functions
-
+# Get user input for Pokedex number + name
 def getInput():
-    # gets entry input from console
-    dex = input('Pokedex Number: ')
-    mon = input('Pokemon Name: ')
-    return int(dex), mon
+    retDict = dict()
+    retDict['dexNum'] = int(input('Pokedex Number: '))
+    retDict['pkmnName'] = input('Pokemon Name: ')
+    return retDict
 
-
-def insertItem(item, connection):
+# Process and potentially insert the entry received from the user
+def insertItem(connection, userInput):
     cursor = connection.cursor()
 
-    existCheckQuery = '''SELECT *
-                         FROM pokemonInfo
-                         WHERE pokemonInfo.dexNum = ?
-                         OR lower(pokemonInfo.pokemonName) = lower(?)'''
+    # Guarantee the order or be able to cherry pick params by making a param tuple based on the inputted dict
+    # instead of relying on tuple order in getInput()
+    newEntryParams = (userInput['dexNum'], userInput['pkmnName'])
 
-    cursor.execute(existCheckQuery, item)
+    pkmnInfoExistQuery = '''SELECT *
+                            FROM pokemonInfo
+                            WHERE pokemonInfo.dexNum = ?
+                            OR lower(pokemonInfo.pokemonName) = lower(?)'''
 
-    existCheckResults = cursor.fetchall()
+    cursor.execute(pkmnInfoExistQuery, newEntryParams)
 
-    if (len(existCheckResults) > 0):
-        print("One or more inputs already exists in the database: ")
-        for row in existCheckResults:
+    pkmnInfoExistResult = cursor.fetchall()
+
+    # Check if either dexNum or pokemonName exists in the database
+    # If so, console output and exit (without any insertion)
+    if (len(pkmnInfoExistResult) > 0):
+        print("ERROR: One or more inputs already exists in the database: ")
+        for row in pkmnInfoExistResult:
             print(row)
-    else:
-        sqlInsert = '''INSERT INTO pokemonInfo(dexNum, pokemonName)
-                       VALUES(?, ?)'''
+        exit()
 
-        cursor.execute(sqlInsert, item)
-        # command that adds data to the table
+    # If not, insert it
+    sqlInsert = '''INSERT INTO pokemonInfo(dexNum, pokemonName)
+                    VALUES(?, ?)'''
 
-        connection.commit()
+    cursor.execute(sqlInsert, newEntryParams)
+    connection.commit()
 
 #%% Main
 
 def main():
-    connection = sqlite3.connect(db_filename)
-    entry = getInput()
-    insertItem(entry, connection)
+    connection = sqlite3.connect(dbFilename)
+    userInput = getInput()
+    insertItem(connection, userInput)
 
 #%% Root
 
