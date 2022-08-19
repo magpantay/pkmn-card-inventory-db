@@ -34,7 +34,8 @@ def insertItem(connection, userInput):
     dexNumExistQuery = '''SELECT *
                           FROM pokemonInfo
                           WHERE pokemonInfo.dexNum = ?'''
-    queryParams = (userInput['dexNum'])
+    # For params with just 1 param, need to have a trailing ',' to force it to be a tuple
+    queryParams = (userInput['dexNum'],)
 
     cursor.execute(dexNumExistQuery, queryParams)
     dexNumExistResult = cursor.fetchall()
