@@ -27,7 +27,7 @@ There will also be a program (likely in Python) written to easily query and modi
 - ~~Plan the database schema~~ (done, see above)
 - ~~Create the database~~ (done, createDB.py)
 - Create a script that interfaces with the DB
-  - Add querying functionality
+  - ~~Add querying functionality~~ (done, DBquery.py)
   - Add insertion functionality
   - Add removal functionality
   - Add updating cardInfo.amount functionality
