@@ -101,6 +101,7 @@ def main():
     connection = sqlite3.connect(dbFilename)
     userInput = getInput()
     insertItem(connection, userInput)
+    connection.close()
 
 #%% Root
 
