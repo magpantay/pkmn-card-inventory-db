@@ -56,12 +56,14 @@ def queryDB(connection, userInput):
         print("No matches found.")
     else:
         fieldNames = ('Pokedex Number', 'Pokemon Name', 'Series', 'Amount', 'Is Full Art?', 'Is Foil?', 'Is Reverse Foil?', 'Notes')
-        print ("-----------------------------------------------")
+        print ('-' * 40)
         # Iterate through columns for each row
         for row in queryResult:
+            print ('-' * 20)
             for j in range(len(fieldNames)):
                 print(fieldNames[j] + ": " + str(row[j]))
-        print ("-----------------------------------------------")
+            print ('-' * 20)
+        print ('-' * 40)
 
 #%% Main
 
@@ -69,6 +71,7 @@ def main():
     connection = sqlite3.connect(dbFilename)
     userInput = getInput()
     queryDB(connection, userInput)
+    connection.close()
 
 #%% Root
 
