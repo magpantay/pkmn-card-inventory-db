@@ -33,7 +33,23 @@ def queryDB(connection, userInput):
 
     if (isInt(userInput)):
         query = ''' 
-                    SELECT *
+                    SELECT pokemonInfo.dexNum, 
+                           pokemonInfo.pokemonName, 
+                            cardInfo.seriesNum, 
+                            cardInfo.amount, 
+                            CASE cardInfo.isFullArt
+                                WHEN 1 THEN "Yes"
+                                ELSE "No"
+                            END AS isFullArt,
+                            CASE cardInfo.isFoil
+                                WHEN 1 THEN "Yes"
+                                ELSE "No"
+                            END AS isFoil,
+                            CASE cardInfo.isReverseFoil
+                                WHEN 1 THEN "Yes"
+                                ELSE "No"
+                            END AS isReverseFoil, 
+                            cardInfo.notes
                     FROM pokemonInfo
                     LEFT JOIN cardInfo ON pokemonInfo.dexNum = cardInfo.dexNum
                     WHERE pokemonInfo.dexNum = ?
@@ -41,7 +57,23 @@ def queryDB(connection, userInput):
         queryParams = (userInput,)
     else:
         query = '''
-                    SELECT *
+                    SELECT pokemonInfo.dexNum, 
+                           pokemonInfo.pokemonName, 
+                           cardInfo.seriesNum, 
+                           cardInfo.amount, 
+                            CASE cardInfo.isFullArt
+                                WHEN 1 THEN "Yes"
+                                ELSE "No"
+                            END AS isFullArt,
+                            CASE cardInfo.isFoil
+                                WHEN 1 THEN "Yes"
+                                ELSE "No"
+                            END AS isFoil,
+                            CASE cardInfo.isReverseFoil
+                                WHEN 1 THEN "Yes"
+                                ELSE "No"
+                            END AS isReverseFoil, 
+                           cardInfo.notes
                     FROM pokemonInfo
                     LEFT JOIN cardInfo ON pokemonInfo.dexNum = cardInfo.dexNum
                     WHERE lower(pokemonInfo.pokemonName) like ?
@@ -55,13 +87,13 @@ def queryDB(connection, userInput):
     if (len(queryResult) == 0):
         print("No matches found.")
     else:
-        fieldNames = ('Pokedex Number', 'Pokemon Name', 'Series', 'Amount', 'Is Full Art?', 'Is Foil?', 'Is Reverse Foil?', 'Notes')
+        userFriendlyFieldNames = ('Pokedex Number', 'Pokemon Name', 'Series', 'Amount', 'Is Full Art?', 'Is Foil?', 'Is Reverse Foil?', 'Notes')
         print ('-' * 40)
         # Iterate through columns for each row
         for row in queryResult:
             print ('-' * 20)
-            for j in range(len(fieldNames)):
-                print(fieldNames[j] + ": " + str(row[j]))
+            for j in range(len(userFriendlyFieldNames)):
+                print(userFriendlyFieldNames[j] + ": " + str(row[j]))
             print ('-' * 20)
         print ('-' * 40)
 
