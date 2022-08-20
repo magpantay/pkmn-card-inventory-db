@@ -57,10 +57,10 @@ def queryDB(connection, userInput):
         queryParams = (userInput,)
     else:
         query = '''
-                    SELECT pokemonInfo.dexNum, 
-                           pokemonInfo.pokemonName, 
-                           cardInfo.seriesNum, 
-                           cardInfo.amount, 
+                    SELECT  pokemonInfo.dexNum, 
+                            pokemonInfo.pokemonName, 
+                            cardInfo.seriesNum, 
+                            cardInfo.amount, 
                             CASE cardInfo.isFullArt
                                 WHEN 1 THEN "Yes"
                                 ELSE "No"
@@ -73,7 +73,7 @@ def queryDB(connection, userInput):
                                 WHEN 1 THEN "Yes"
                                 ELSE "No"
                             END AS isReverseFoil, 
-                           cardInfo.notes
+                            cardInfo.notes
                     FROM pokemonInfo
                     LEFT JOIN cardInfo ON pokemonInfo.dexNum = cardInfo.dexNum
                     WHERE lower(pokemonInfo.pokemonName) like ?
