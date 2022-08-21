@@ -29,3 +29,32 @@ def isInt(userInput):
         return bool(1)
     except ValueError:
         return bool(0)
+    
+# Given a user input of a name, return the Pokedex number
+def nameToDexNum(userInput):
+    connection = dbConnect()
+    cursor = connection.cursor()
+
+    # Ensure the query matches case to the input by using lower() on both
+    query = ''' 
+                SELECT dexNum
+                FROM pokemonInfo
+                WHERE lower(pokemonName) like ? 
+            '''
+    queryParams = ('%' + userInput.lower() + '%',)
+
+    cursor.execute(query, queryParams)
+    queryResult = cursor.fetchall()
+
+    if (len(queryResult) == 0):
+        print("ERROR: No matches found.")
+        exit()
+    
+    if (len(queryResult) > 1):
+        print("ERROR: More than one match found. Check inputs and try again.")
+        print("Returned Pokedex numbers: ")
+        for row in queryResult:
+            print(row)
+        exit()
+    
+    return queryResult[0][0]
