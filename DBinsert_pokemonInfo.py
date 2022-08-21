@@ -11,8 +11,6 @@ import pkmnHelperModule
 #%% Functions
 # Get user input for Pokedex number + name
 def getInput():
-    numberOfPokemon = 905
-
     retDict = dict()
     retDict['dexNum'] = int(input('Pokedex Number: '))
 
