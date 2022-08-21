@@ -7,30 +7,23 @@ Make sure DB exists by running createDB.py before using this
 #%% Imports and Vars
 
 import sqlite3
+import pkmnHelperModule
 
 dbFilename = 'pkmn_cards.db'
 
 #%% Functions
-# Returns "true" boolean value for input values with 'y', 'true', or '1'
-def convToBool(input):
-    return input.lower() in ('y', 'true', '1')
 
 # Get user input for all fields in this DB table
 def getInput():
-    numberOfPokemon = 905
-
     retDict = dict()
     retDict['dexNum'] = int(input('Pokedex Number: '))
 
-    # Check whether Pokedex number is out of the range of existing Pokemon
-    if (retDict['dexNum'] <= 0 or retDict['dexNum'] > numberOfPokemon):
-        print("ERROR: Pokedex number " + str(retDict['dexNum']) + " out of bounds from known Pokedex range (1-" + str(numberOfPokemon) + ")")
-        exit()
+    pkmnHelperModule.validateDexNum(retDict['dexNum'])
 
     retDict['seriesNum'] = input('Series Info: ')
-    retDict['isFullArt'] = convToBool(input('Full Art? (Y/N): '))
-    retDict['isFoil'] = convToBool(input('Normal Foil? (Y/N): '))
-    retDict['isRevFoil'] = convToBool(input('Reverse Foil? (Y/N): '))
+    retDict['isFullArt'] = pkmnHelperModule.convToBool(input('Full Art? (Y/N): '))
+    retDict['isFoil'] = pkmnHelperModule.convToBool(input('Normal Foil? (Y/N): '))
+    retDict['isRevFoil'] = pkmnHelperModule.convToBool(input('Reverse Foil? (Y/N): '))
     retDict['notes'] = input('Additional Notes (if needed): ')
 
     return retDict

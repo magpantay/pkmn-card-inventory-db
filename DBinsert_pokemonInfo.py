@@ -6,9 +6,7 @@ Make sure DB exists by running createDB.py before using this
 
 #%% Imports and Vars
 
-import sqlite3
-
-dbFilename = 'pkmn_cards.db'
+import pkmnHelperModule
 
 #%% Functions
 # Get user input for Pokedex number + name
@@ -18,10 +16,7 @@ def getInput():
     retDict = dict()
     retDict['dexNum'] = int(input('Pokedex Number: '))
 
-    # Check whether Pokedex number is out of the range of existing Pokemon
-    if (retDict['dexNum'] <= 0 or retDict['dexNum'] > numberOfPokemon):
-        print("ERROR: Pokedex number " + str(retDict['dexNum']) + " out of bounds from known Pokedex range (1-" + str(numberOfPokemon) + ")")
-        exit()
+    pkmnHelperModule.validateDexNum(retDict['dexNum'])
 
     retDict['pkmnName'] = input('Pokemon Name: ')
     return retDict
@@ -53,7 +48,7 @@ def insertItem(connection, userInput):
 
     # If not, insert it
     sqlInsert = '''INSERT INTO pokemonInfo(dexNum, pokemonName)
-                    VALUES(?, ?)'''
+                   VALUES(?, ?)'''
 
     cursor.execute(sqlInsert, newEntryParams)
     connection.commit()
@@ -61,7 +56,7 @@ def insertItem(connection, userInput):
 #%% Main
 
 def main():
-    connection = sqlite3.connect(dbFilename)
+    connection = pkmnHelperModule.dbConnect()
     userInput = getInput()
     insertItem(connection, userInput)
     connection.close()
