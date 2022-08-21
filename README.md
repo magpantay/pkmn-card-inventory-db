@@ -20,6 +20,7 @@ There will also be a program (likely in Python) written to easily query and modi
   - Is Foil? (boolean)
   - Is Reverse Foil? (boolean)
   - Additional Notes (text)
+    - To-do: Maybe instead of a additional notes, have a language (English, Japanese, etc.) column and a variant (delta species, Hisuian, etc.) column
 
 ## To-dos:
 
