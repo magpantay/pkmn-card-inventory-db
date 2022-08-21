@@ -10,8 +10,8 @@ def getInput():
     numOrName = input('Pokemon Name or Dex Number: ')
 
     if (pkmnHelperModule.isInt(numOrName)):
-        pkmnHelperModule.validateDexNum(numOrName)
-        retDict['num'] = numOrName # if it passes through validateDexNum without exiting, then it's a valid number input
+        pkmnHelperModule.validateDexNum(int(numOrName))
+        retDict['num'] = int(numOrName) # if it passes through validateDexNum without exiting, then it's a valid number input
     else:
         retDict['num'] = pkmnHelperModule.nameToDexNum(numOrName)
 
@@ -74,7 +74,7 @@ def removal(connection, userInput):
                             AND isReverseFoil = ?
                         '''
         removalParams = (userInput['num'], userInput['seriesNum'], userInput['isFullArt'], userInput['isFoil'], userInput['isRevFoil'])
-        
+
     cursor.execute(removalQuery, removalParams)
     
     connection.commit()
