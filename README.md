@@ -29,7 +29,7 @@ There will also be a program (likely in Python) written to easily query and modi
 - Create a script that interfaces with the DB
   - Add querying functionality
   - Add insertion functionality
-  - Add removal functionality
+  - ~~Add removal functionality~~ (done, DBremoval.py)
   - Add updating cardInfo.amount functionality
 - Verify and test functionality of script
 - Potentially: create a GUI for interfacing/modifying the DB
