@@ -31,6 +31,6 @@ There will also be a program (likely in Python) written to easily query and modi
   - Add querying functionality
   - ~~Add insertion functionality~~ (done, DBinsert_cardInfo.py and DBinsert_pokemonInfo.py)
   - Add removal functionality
-  - ~~Add updating cardInfo.amount functionality~~ (done as part of DBinsert_pokemonInfo.py)
+  - ~~Add updating cardInfo.amount functionality~~ (done as part of DBinsert_cardInfo.py)
 - Verify and test functionality of script
 - Potentially: create a GUI for interfacing/modifying the DB
