@@ -17,8 +17,16 @@ def convToBool(input):
 
 # Get user input for all fields in this DB table
 def getInput():
+    numberOfPokemon = 905
+
     retDict = dict()
     retDict['dexNum'] = int(input('Pokedex Number: '))
+
+    # Check whether Pokedex number is out of the range of existing Pokemon
+    if (retDict['dexNum'] <= 0 or retDict['dexNum'] > numberOfPokemon):
+        print("ERROR: Pokedex number " + str(retDict['dexNum']) + " out of bounds from known Pokedex range (1-" + str(numberOfPokemon) + ")")
+        exit()
+
     retDict['seriesNum'] = input('Series Info: ')
     retDict['isFullArt'] = convToBool(input('Full Art? (Y/N): '))
     retDict['isFoil'] = convToBool(input('Normal Foil? (Y/N): '))
