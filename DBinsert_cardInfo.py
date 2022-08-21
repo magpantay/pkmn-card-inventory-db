@@ -6,7 +6,6 @@ Make sure DB exists by running createDB.py before using this
 
 #%% Imports and Vars
 
-import sqlite3
 import pkmnHelperModule
 
 dbFilename = 'pkmn_cards.db'
@@ -99,7 +98,7 @@ def insertItem(connection, userInput):
 #%% Main
 
 def main():
-    connection = sqlite3.connect(dbFilename)
+    connection = pkmnHelperModule.dbConnect()
     userInput = getInput()
     insertItem(connection, userInput)
     connection.close()
